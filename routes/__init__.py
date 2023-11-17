@@ -1,8 +1,11 @@
 import csv
 from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from io import StringIO
+import os
 
 bp = Blueprint("routes", __name__)
+
+secret_key = os.environ.get("OPENAI_API_KEY")
 
 
 @bp.route("/upload", methods=["GET"])
@@ -112,7 +115,7 @@ def upload():
                         "keywords": ["technology", "announcement", "project"],
                     },
                 ],
-            }
+            },
         ]
 
         return render_template("upload_form.html", text_body=text_body, data=dummy_data)
