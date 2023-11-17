@@ -7,7 +7,7 @@ This application takes in raw data via csv upload, processes it with AI and then
 ## Project Structure
 
 - `storyful-newsworthy-ai/`: Main package for Flask application.
-  - `views/`: Module for views.
+  - `templates/`: Module for views.
   - `routes/`: Module for endpoints.
   - `application/`: Module for business logic.
   - `__init__.py`: Initialization of the Flask app.
@@ -55,7 +55,7 @@ Follow these steps to set up and run the project locally.
    python app.py
    ```
 
-Visit http://127.0.0.1:5000/ in your web browser to access the app.
+Visit http://127.0.0.1:5000/upload in your web browser to access the app.
 
 6. Linting and Formatting
 
