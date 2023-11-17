@@ -23,7 +23,20 @@ def upload():
         data = parse_csv(csv_file)
         current_app.logger.info(f"CSV Data: {data}")
 
-        return render_template("upload_form.html", text_body=text_body, data=data)
+        dummy_data = [
+            {
+                "title": "Article 1",
+                "summary": "Summary 1",
+                "keywords": ["keyword1", "keyword2"],
+            },
+            {
+                "title": "Article 2",
+                "summary": "Summary 2",
+                "keywords": ["keyword3", "keyword4"],
+            },
+        ]
+
+        return render_template("upload_form.html", text_body=text_body, data=dummy_data)
 
     return redirect(url_for("routes.upload_form"))
 

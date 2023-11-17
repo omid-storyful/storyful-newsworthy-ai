@@ -26,17 +26,17 @@
         <table>
             <thead>
                 <tr>
-                    {% for key in data[0].keys() %}
-                        <th>{{ key }}</th>
-                    {% endfor %}
+                    <th>Title</th>
+                    <th>Summary</th>
+                    <th>Keywords</th>
                 </tr>
             </thead>
             <tbody>
-                {% for row in data %}
+                {% for item in data %}
                     <tr>
-                        {% for value in row.values() %}
-                            <td>{{ value }}</td>
-                        {% endfor %}
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.summary }}</td>
+                        <td>{{ item.keywords | join(", ") }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
