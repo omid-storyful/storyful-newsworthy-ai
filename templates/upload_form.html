@@ -1,46 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Upload Form</title>
-</head>
-<body>
-    <h1>Upload Form</h1>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="text_body">Text Body:</label>
-        <input type="text" name="text_body" id="text_body" required>
-        <br>
-        <label for="csv_file">CSV File:</label>
-        <input type="file" name="csv_file" accept=".csv" required>
-        <br>
-        <button type="submit">Upload</button>
-    </form>
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        box-sizing: border-box;
+      }
 
-    {% if text_body %}
-        <h3>{{ text_body }}</h3>
-    {% endif %}
+      h1,
+      h2,
+      h3,
+      p,
+      label {
+        font-family: "Open Sans", sans-serif;
+        font-size: 12px;
+      }
+
+      #view1,
+      #view2 {
+        width: 80vw;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .header {
+        margin: 20px auto;
+      }
+
+      #utils {
+        text-align: right;
+      }
+
+      h1 {
+        font-size: 23px;
+        font-weight: bold;
+        margin-top: 40px;
+        text-align: left;
+      }
+
+      #form-wrapper {
+        margin: 20px auto 55px;
+        border: 1px solid grey;
+        border-radius: 4px;
+        padding: 20px;
+        background: whitesmoke;
+      }
+
+      textarea {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      label,
+      button {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-left: auto;
+      }
+
+      #clusters-wrapper {
+        margin: 20px auto;
+      }
+
+      .card {
+        background: whitesmoke;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+
+      .card h2 {
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .card img {
+        float: left;
+        margin-right: 15px;
+      }
+      .card p {
+        font-size: 14px;
+      }
+      .card .keywords {
+        font-size: 12px;
+        color: grey;
+        clear: both;
+        padding-top: 10px;
+      }
+
+      .keywords {
+        margin-top: 15px;
+        margin-bottom: 20px;
+      }
+
+      .keywords span,
+      .post-keywords span {
+        font-size: 12px;
+        margin-right: 5px;
+        background-color: #57a3ff;
+        padding: 4px 8px;
+        border-radius: 6px;
+        color: white;
+      }
+
+      .post-keywords {
+        margin-top: 10px;
+        color: grey;
+        font-size: 11px;
+      }
+
+      .post-card {
+        border-bottom: 1px solid gainsboro;
+        padding: 18px 10px 20px 10px;
+      }
+      .post-card:last-child {
+        border-bottom: 0;
+      }
+
+      .post-card p {
+        font-size: 11px;
+      }
+
+      .post-card h3 {
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .post-body {
+        margin: 10px 0;
+      }
+
+      .posts {
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="view1">
+      <div class="header">
+        <h1>Storyful Newsworthy AI</h1>
+      </div>
+      <div id="form-wrapper">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <label for="topic">Topic:</label>
+          <textarea id="topic" name="text_body" rows="4"></textarea>
+          <label for="file">Choose a file:</label>
+          <input type="file" id="file" name="csv_file" accept=".csv" required />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+
+      {% if text_body %}
+      <p class="text-body">Results for <b>{{ text_body }}</b>:</p>
+      {% endif %}
+    </div>
 
     {% if data %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Summary</th>
-                    <th>Keywords</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in data %}
-                    <tr>
-                        <td>{{ item.title }}</td>
-                        <td>{{ item.summary }}</td>
-                        <td>{{ item.keywords | join(", ") }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div id="view2">
+      <div class="header"></div>
+      <div id="clusters-wrapper">
+        {% for item in data %}
+        <div class="card">
+          <h2>{{ item.title }}</h2>
+          <img src="https://placehold.co/150x100" alt="" />
+          <p>{{ item.summary }}</p>
+          <p class="keywords">{{ item.keywords | join(", ") }}</p>
+          <div class="posts">
+            <h2>Posts:</h2>
+            {% for item in item.posts %}
+            <div class="post-card">
+              <h3>{{ item.post_title}}</h3>
+              <p class="meta">
+                {{ item.time}} {{ item.date}} by {{ item.account_name}}
+              </p>
+              <p class="post-body">{{ item.body}}</p>
+              <p>Source: {{ item.source}}</p>
+              <p>Location: {{ item.location}}</p>
+              <p class="post-keywords">{{ item.keywords | join(", ") }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
     {% endif %}
-</body>
+  </body>
 </html>
