@@ -16,4 +16,5 @@ sentence_transformers==2.2.2
 tiktoken==0.5.1
 chromadb==0.4.17
 unstructured==0.10.30
+yellowbrick
 python-dotenv

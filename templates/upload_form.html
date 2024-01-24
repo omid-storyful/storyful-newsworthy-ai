@@ -163,12 +163,10 @@
   <body>
     <div id="view1">
       <div class="header">
-        <h1>Storyful Newsworthy AI</h1>
+        <h1>AI Tool</h1>
       </div>
       <div id="form-wrapper">
         <form action="/upload" method="post" enctype="multipart/form-data">
-          <label for="topic">Topic:</label>
-          <textarea id="topic" name="text_body" rows="4"></textarea>
           <label for="file">Choose a file:</label>
           <input type="file" id="file" name="csv_file" accept=".csv" required />
           <button type="submit">Upload</button>
@@ -194,12 +192,13 @@
             <h2>Posts:</h2>
             {% for item in item.posts %}
             <div class="post-card">
-              <h3>{{ item.post_title}}</h3>
+              <h3>{{ item.title}}</h3>
               <p class="meta">
-                {{ item.time}} {{ item.date}} by {{ item.account_name}}
+                {{ item.time}} {{ item.date}}
               </p>
               <p class="post-body">{{ item.body}}</p>
-              <p>Source: {{ item.source}}</p>
+              <p>Source: {{ item.link}}</p>
+              <p>Alert Type: {{ item.alert_type}}</p>
               <p>Location: {{ item.location}}</p>
               <p class="post-keywords">{{ item.keywords | join(", ") }}</p>
             </div>
