@@ -309,7 +309,7 @@ def upload():
                         "keywords": ["technology", "announcement", "project"],
                     },
                 ],
-            }
+            },
         ]
 
         return render_template("upload_form.html", text_body=text_body, data=response)
